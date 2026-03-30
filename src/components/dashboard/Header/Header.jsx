@@ -23,11 +23,11 @@ const DotGrid = () => (
   </svg>
 );
 
-const Header = ({currTab, show, setShow}) => {
+const Header = ({ currTab, show, setShow }) => {
   return (
     <div className="header-layout">
       <div className="flex gap-3 xl:gap-9 items-center col-span-3">
-        <div className="shadow-custom " onClick={()=>setShow((prev)=>!prev)}>
+        <div className="shadow-custom " onClick={() => setShow((prev) => !prev)}>
           <DotGrid />
         </div>
         <h1
@@ -58,7 +58,7 @@ const Header = ({currTab, show, setShow}) => {
       <div className="flex col-span-5 items-center justify-center gap-5 xl:gap-10">
         <ToggleSwitch />
         <div className="relative bg-[#F3EAFF] p-1.5 xl:p-2 rounded-full">
-      
+
           <div className="absolute -top-1 xl:-top-2 left-4.5 xl:left-5 size-4 xl:size-6 bg-[#8833FF] rounded-full flex items-center justify-center text-xs">
             <p className="text-white">1</p>
           </div>
@@ -67,7 +67,7 @@ const Header = ({currTab, show, setShow}) => {
         </div>
         <MdMessage className="text-gray-400  text-lg xl:text-xl" />
         <FaUserGroup className="text-gray-400  text-lg xl:text-xl" />
-        <HiChartSquareBar className="text-gray-400  text-lg xl:text-xl"  />
+        <HiChartSquareBar className="text-gray-400  text-lg xl:text-xl" />
       </div>
     </div>
   );
