@@ -3,16 +3,21 @@ import themeReducer from "./slices/themeSlice";
 import meetingReducer from "./slices/meetingSlice";
 import notificationReducer from "./slices/notificationSlice";
 import documentReducer from "./slices/documentSlice";
-import authReducer from "./slices/authSlice"
-import reportReducer from "./slices/reportSlice"; // ← Did you add this?
+import uiReducer from "./uiSlice";
+import authReducer from "./slices/authSlice";
+import languageReducer from "./slices/languageSlice";
+import reportReducer from "./slices/reportSlice"; 
+
 
 export const store = configureStore({
   reducer: {
-    auth:authReducer,
+    
     theme: themeReducer,
     meeting: meetingReducer,
     notification: notificationReducer,
     documents: documentReducer,
-    reports: reportReducer, // ← And this?
+    ui: uiReducer,
+    language: languageReducer,
+    reports: reportReducer,
   },
 });
