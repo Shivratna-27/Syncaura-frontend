@@ -8,7 +8,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -180,3 +180,17 @@
   -ms-overflow-style: none;  /* IE & Edge */
   scrollbar-width: none;     /* Firefox */
 }
+
+:root {
+  --budget-chart-color: #1e88e5; /* Light mode color */
+}
+
+/* Aapka project data-theme=dark use karta hai */
+[data-theme="dark"] {
+  --budget-chart-color: #00f2ff !important; /* Dark mode neon color */
+}
+
+/* index.css */
+.dark .resource-bar-engineering { background-color: #00d4ff !important; }
+.dark .resource-bar-design { background-color: #bc13fe !important; }
+/* ... baaki categories ke liye bhi */

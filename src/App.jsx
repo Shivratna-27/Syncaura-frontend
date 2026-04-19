@@ -21,8 +21,7 @@ import Notice from "./pages/Notice";
 import Settings from "./pages/Settings";
 import Admin from "./pages/Admin";
 import Home from "./pages/Home";
-import AdminSidebar from "./components/admin/AdminSidebar";
-import AdminHeader from "./components/admin/AdminHeader";
+
 import { ToastContainer, Bounce } from "react-toastify";
 import { refreshAccessToken } from "./redux/features/authThunks";
 import { useEffect } from "react";

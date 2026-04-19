@@ -1,72 +1,53 @@
-import AdminStats from "../components/admin/AdminStats";
-import AdminTable from "../components/admin/AdminTable";
-import { Clock } from "lucide-react";
-import { useSelector } from "react-redux";
-
-const DashboardHeader = ({ isDark }) => {
-  return (
-    <div className="flex items-center justify-between mb-8">
-      {/* LEFT */}
-      <div>
-        <h1
-          className={`font-poppins text-[28px] ml-9 mt-2 font-bold leading-[100%] ${
-            isDark ? "text-[#F1F5F9]" : "text-gray-900"
-          }`}
-        >
-          Dashboard Overview
-        </h1>
-
-        <p
-          className={`mt-[18px] ml-9 font-poppins text-[18.5px] font-semibold leading-[100%] ${
-            isDark ? "text-[#94A3B8]" : "text-gray-600"
-          }`}
-        >
-          Welcome back, here&apos;s what&apos;s happening today.
-        </p>
-      </div>
-
-      {/* RIGHT: LAST UPDATED BOX */}
-      <div
-        className={`w-[238px] h-[42px] flex items-center gap-2 px-[12px] rounded-[7px] ${
-          isDark ? "bg-[#1E293B]" : "bg-[#F1F5F9]"
-        }`}
-      >
-      
-        <span
-          className={`font-poppins text-[11px] font-semibold leading-[100%] ${
-            isDark ? "text-[#64748B]" : "text-gray-500"
-          } whitespace-nowrap`}
-        >
-          Last updated: Just now
-        </span>
-         <Clock className={`ml-16 w-4 h-4 ${isDark ? "text-[#64748B]" : "text-gray-500"}`} />
-      </div>
-    </div>
-  );
-};
+import React, { useState } from "react";
+import AdminDashboard from "../components/admin/adminDashboard.jsx";
+import ProjectsPage from "../components/admin/adminprojectdashboard/ProjectsPage.jsx";
+import AnalyticsSection from "../components/admin/adminanalyticaldashboard/AnalyticsSection.jsx";
 
 const Admin = () => {
-  const isDark = useSelector((state) => state.theme.isDark);
+  const [activeTab, setActiveTab] = useState("dashboard");
+
+  const tabs = [
+    { key: "dashboard", label: "Dashboard" },
+    { key: "projects", label: "Projects" },
+    { key: "analytics", label: "Analytics" },
+  ];
 
   return (
-    <div
-      className={`flex min-h-screen transition-colors ${
-        isDark ? "bg-[#0B1220] text-white" : "bg-white text-gray-900"
-      }`}
-    >
-      {/* Dashboard content */}
-      <main className="flex-1 p-6">
-        {/* Dashboard Overview */}
-        <DashboardHeader isDark={isDark} />
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
+     {/* Top Navbar - Border hatane ke baad */}
+    <div className="bg-white dark:bg-black px-8 py-4 flex items-center gap-8 transition-colors duration-300">
+        {/* Title */}
+        <h1 className="text-xl font-bold text-black dark:text-white tracking-wide whitespace-nowrap">
+          DashBoard
+        </h1>
 
-        {/* Stats Cards */}
-        <div className="mb-6">
-          <AdminStats isDark={isDark} />
+        {/* Tab Switcher */}
+        <div className="flex border-[1.5px] border-[#e2e8f0] dark:border-slate-700 rounded-full overflow-hidden p-[2px] bg-white dark:bg-slate-900">
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.key;
+            return (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`px-5 py-[5px] border-none rounded-full text-[13px] transition-all whitespace-nowrap cursor-pointer ${
+                  isActive
+                    ? "font-semibold text-blue-600 dark:text-[#73FBFD] "
+                    : "font-medium text-[#64748b] dark:text-slate-400 bg-transparent hover:text-slate-900 dark:hover:text-slate-200"
+                }`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
+      </div>
 
-        {/* Table / Charts */}
-        <AdminTable isDark={isDark} />
-      </main>
+      {/* Page Content */}
+      <div className="p-8 bg-white dark:bg-black">
+        {activeTab === "dashboard" && <AdminDashboard />}
+        {activeTab === "projects" && <ProjectsPage />}
+        {activeTab === "analytics" && <AnalyticsSection />}
+      </div>
     </div>
   );
 };

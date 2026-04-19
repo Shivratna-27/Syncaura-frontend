@@ -4,28 +4,27 @@ import { motion } from "framer-motion";
 const CircularProgress = ({
   percentage = 75,
   size = 160,
-  data=null,
+  data = null,
   strokeWidth = 25,
-  progressColor = "#1E73E8",
-  trackColor = "#EEF2F6",
+  progressColor = "#127FEC",
+  trackColor = "#E5E7EB",
   startAngle = -90,
   showText = true,
   label = "FINISHED",
-  textColor = "#000",
+  textColor = "#000", // This is the prop we send from Dashboard
   labelColor = "#9CA3AF",
   fontSize = 28,
   duration = 2,
-  textSize=15,
+  textSize = 15,
+  innerBg = "bg-white",
 }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
-
-  const progressOffset =
-    circumference - (percentage / 100) * circumference;
+  const progressOffset = circumference - (percentage / 100) * circumference;
 
   return (
     <div
-      className="relative flex items-center justify-center"
+      className={`relative flex items-center justify-center rounded-full ${innerBg}`}
       style={{ width: size, height: size }}
     >
       <svg
@@ -34,7 +33,6 @@ const CircularProgress = ({
         viewBox={`0 0 ${size} ${size}`}
         style={{ transform: `rotate(${startAngle}deg)` }}
       >
-        {/* Track */}
         <circle
           cx={size / 2}
           cy={size / 2}
@@ -43,8 +41,6 @@ const CircularProgress = ({
           strokeWidth={strokeWidth}
           fill="none"
         />
-
-        {/* Animated Progress */}
         <motion.circle
           cx={size / 2}
           cy={size / 2}
@@ -52,29 +48,25 @@ const CircularProgress = ({
           stroke={progressColor}
           strokeWidth={strokeWidth}
           fill="none"
-        //   strokeLinecap="round"
           strokeDasharray={circumference}
           initial={{ strokeDashoffset: circumference }}
           animate={{ strokeDashoffset: progressOffset }}
-          transition={{
-            duration,
-            ease: "easeInOut",
-          }}
+          transition={{ duration, ease: "easeInOut" }}
         />
       </svg>
 
-      {/* Center Text */}
       {showText && (
         <div className="absolute flex flex-col items-center">
           <span
-            style={{ fontSize, color: textColor }}
+            // THE FIX: We apply the textColor prop here via inline styles
+            style={{ fontSize, color: textColor }} 
             className="font-bold"
           >
-            { data ?? `${percentage}%`}
+            {data ?? `${percentage}%`}
           </span>
           <span
-            style={{fontSize: textSize, color: labelColor }}
-            className="text-xs font-semibold"
+            style={{ fontSize: textSize, color: labelColor }}
+            className="text-xs font-semibold uppercase"
           >
             {label}
           </span>

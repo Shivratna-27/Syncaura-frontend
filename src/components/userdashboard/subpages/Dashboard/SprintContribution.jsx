@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import ContributionCard from "./ContributionCard";
-// import { CONTRIBUTIONS } from "./contributions.config";
 
-const SprintContribution = ({CONTRIBUTIONS}) => {
+const SprintContribution = ({ CONTRIBUTIONS }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -13,13 +12,13 @@ const SprintContribution = ({CONTRIBUTIONS}) => {
         p-5 
         rounded-2xl 
         bg-white 
-        dark:bg-gray-900
+        dark:bg-[#1E1E1E]
         shadow-[0_0_12px_#00000020]
         dark:shadow-[0_0_12px_#00000080] 
       "
     >
-      {/* Title */}
-      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-6">
+      
+      <h2 className="text-[#64748B] dark:text-gray-200 font-bold text-2xl sm:text-2xl mb-6">
         Sprint Contribution
       </h2>
 

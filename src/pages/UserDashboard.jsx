@@ -22,41 +22,36 @@ const UserDashboard = () => {
 
   return (
     <div className="relative w-full h-full flex flex-col transition-colors duration-500 border-t dark:border-black bg-white dark:bg-black">
-
+      
+      {/* Header & Tab Switcher */}
       <div className="flex flex-col sm:flex-row items-center justify-between lg:justify-start px-5 md:px-10 gap-10 gap-y-3 pt-6">
         <h1 className="text-2xl font-medium text-black dark:text-white">
           Dashboard
         </h1>
 
-       
+        
         <div className="relative flex items-center px-5 py-2 gap-5 rounded-3xl border border-[#E3E3E3] dark:border-[#73FBFD]">
           {tabs.map((item) => (
             <button
               key={item}
               onClick={() => handleTabChange(item)}
-              className="relative z-10 px-3 py-1"
+              className="relative z-10 px-3 py-1 outline-none"
             >
-              {selectedTab === item && (
-                <motion.div
-                  layoutId="activeTab"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  className="absolute inset-0 rounded-2xl bg-blue-100 dark:bg-[#73FBFD]"
-                />
-              )}
-
               <motion.span
                 animate={{
                   color:
                     selectedTab === item
                       ? isDark
-                        ? "#000000"
-                        : "#2461E6"
+                        ? "#73FBFD" // Active color in dark mode
+                        : "#2461E6" // Active color in light mode
                       : isDark
-                      ? "#FFFFFF"
-                      : "#9CA3AF",
+                      ? "#FFFFFF" // Inactive color in dark mode
+                      : "#9CA3AF", // Inactive color in light mode
                 }}
                 transition={{ duration: 0.2 }}
-                className={`relative text-xs ${selectedTab===item ? "font-bold": "font-semibold"} sm:text-sm `}
+                className={`relative text-xs ${
+                  selectedTab === item ? "font-bold" : "font-semibold"
+                } sm:text-sm`}
               >
                 {item}
               </motion.span>
@@ -65,6 +60,7 @@ const UserDashboard = () => {
         </div>
       </div>
 
+      {/* Page Content */}
       <div className="relative flex-1 overflow-hidden px-5 md:px-10 pt-6 pb-24">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
@@ -74,12 +70,11 @@ const UserDashboard = () => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: direction === 1 ? -300 : 300, opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="absolute inset-0 overflow-y-auto rounded-xl  p-6"
+            className="absolute inset-0 overflow-y-auto no-scrollbar rounded-xl p-6"
           >
-        
-           {selectedTab === "Dashboard" && <Dashboard/>}
-             {selectedTab === "Analytics" && <Analytics/>}
-             {selectedTab === "Projects" && <Projects/>}
+            {selectedTab === "Dashboard" && <Dashboard />}
+            {selectedTab === "Analytics" && <Analytics />}
+            {selectedTab === "Projects" && <Projects />}
           </motion.div>
         </AnimatePresence>
       </div>

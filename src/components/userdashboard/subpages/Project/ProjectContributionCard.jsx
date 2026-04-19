@@ -12,53 +12,40 @@ export default function ProjectContributionCard() {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="w-full  bg-white rounded-xl shadow-[0_0_10px_0_#54545440] p-4 sm:p-6 "
+      className="w-full bg-white dark:bg-[#1E1E1E] text-slate-900 dark:text-white rounded-xl p-6 border border-slate-200 dark:border-[#2d2f31] shadow-sm dark:shadow-none"
     >
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold sm:font-bold text-[#000000]">
-          My Individual Contribution
-        </h2>
-        <button className="text-sm text-[#0079EC] font-semibold hover:underline">
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="text-2xl font-bold">My Individual Contribution</h2>
+        <button className="text-xs text-cyan-600 dark:text-[#00D2FF] font-bold tracking-tight hover:underline transition-colors">
           View Detailed Log
         </button>
       </div>
 
-      <div className="flex flex-col gap-6 px-2 md:px-10 xl:px-20">
+      <div className="flex flex-col gap-8">
         {contributions.map((item, index) => (
-          <ProgressItem
-            key={index}
-            title={item.title}
-            value={item.value}
-            delay={index * 0.15}
-          />
+          <div key={index} className="flex flex-col gap-3">
+            <div className="flex items-center justify-between">
+              {/* Title: Dark slate in light, White in dark */}
+              <span className="text-sm font-medium text-slate-700 dark:text-white">
+                {item.title}
+              </span>
+              {/* Percentage: Deep cyan in light, Neon cyan in dark */}
+              <span className="text-cyan-600 dark:text-[#00D2FF] text-sm font-bold">
+                {item.value}%
+              </span>
+            </div>
+            <div className="w-full h-1.5 bg-slate-100 dark:bg-[#2d2f31] rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${item.value}%` }}
+                transition={{ duration: 1, delay: index * 0.1 }}
+                /* Bar: Solid cyan in light, Glowing neon cyan in dark */
+                className="h-full bg-cyan-500 dark:bg-[#00D2FF] rounded-full dark:shadow-[0_0_8px_rgba(0,210,255,0.4)]"
+              />
+            </div>
+          </div>
         ))}
       </div>
     </motion.div>
   );
 }
-
-
-const ProgressItem = ({ title, value, delay }) => {
-  return (
-    <div className="flex flex-col gap-1">
-      <div className="flex items-center justify-between text-sm sm:text-base">
-        <span className="text-[#8F919F] font-medium">{title}</span>
-        <span className="text-blue-600 font-semibold">{value}%</span>
-      </div>
-
-      <div className="w-full h-3 bg-[#E7EBEE] rounded-full overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: `${value}%` }}
-          transition={{
-            duration: 0.8,
-            delay,
-            ease: "easeInOut",
-          }}
-          className="h-full bg-[#137FEC] rounded-full"
-        />
-      </div>
-    </div>
-  );
-};
