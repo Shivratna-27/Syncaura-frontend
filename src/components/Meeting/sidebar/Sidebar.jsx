@@ -132,7 +132,7 @@ export default function Sidebar({ open, setOpen }) {
     <div
   className={`
     fixed top-[72px] left-0 bottom-0
-    w-[260px]
+    w-[220px]
     bg-[#ECEAEA] dark:bg-[#1A1A1A]
     shadow-[4px_0_10px_rgba(0,0,0,0.1)]
     z-50
