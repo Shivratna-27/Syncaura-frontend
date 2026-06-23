@@ -35,7 +35,21 @@ src/
 
 ---
 
-## 🔐 2. Authentication Service & Token Management
+## 🌐 2. Authentication API Endpoints
+
+The following endpoints manage the session and credentials for users on the platform:
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| POST | `/api/auth/register` | Register a new user |
+| POST | `/api/auth/login` | Authenticate user |
+| POST | `/api/auth/logout` | Logout user |
+| POST | `/api/auth/refresh` | Refresh access token |
+| GET | `/api/auth/me` | Get current user profile |
+
+---
+
+## 🔐 3. Authentication Service & Token Management
 
 User authentication in Syncaura uses **JSON Web Tokens (JWT)**. The token management system separates short-lived Access Tokens from long-lived Refresh Tokens to optimize security.
 
@@ -70,7 +84,7 @@ When an API request fails with a `401 Unauthorized` status (indicating an expire
 
 ---
 
-## 🔄 3. Request and Response Flow
+## 🔄 4. Request and Response Flow
 
 The diagram below illustrates the communication flow during an API transaction (e.g., submitting the Login or Register form):
 
@@ -120,7 +134,7 @@ The diagram below illustrates the communication flow during an API transaction (
 
 ---
 
-## 🔄 4. Handling API Actions, Loading, and Errors
+## 🔄 5. Handling API Actions, Loading, and Errors
 
 ### A. Calling Endpoints from Pages
 Always dispatch Redux thunks from forms to communicate with the API. Use `.unwrap()` to convert Redux actions into standard Javascript Promises so page-level `try/catch` statements can capture local outcomes:
@@ -162,7 +176,7 @@ Errors are routed through a central `handleError` service, which parses HTTP sta
 
 ---
 
-## 💡 5. Best Practices for the Development Team
+## 💡 6. Best Practices for the Development Team
 
 1. **Keep Secrets Secret**: Never hardcode database credentials, ports, or API endpoints in source files. Use environment variables instead.
 2. **Always Use the Axios Client**: Avoid calling plain `axios` directly in pages. Use the configured `api` wrapper import from `src/config/axios.js` to ensure request headers and automatic token refresh interceptors are applied.
