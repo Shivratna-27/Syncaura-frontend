@@ -87,7 +87,7 @@ const SignIn = () => {
    };
  
    const onError = (errors) => {
-    isSubmitting(false)
+     setIsSubmitting(false);
      const firstError = Object.values(errors)[0];
  
      if (firstError?.message) {
@@ -122,7 +122,7 @@ const SignIn = () => {
       {/* RIGHT SIDE */}
       <div className="w-full flex flex-col items-center max-w-md space-y-5">
 
-        <div className="w-[380px] space-y-6 mt-4">
+        <form onSubmit={handleSubmit(onSubmit, onError)} className="w-[380px] space-y-6 mt-4">
 
           <h1 className="text-2xl font-semibold text-center text-gray-800 dark:text-white">
             Welcome Back
@@ -132,28 +132,30 @@ const SignIn = () => {
           <div className="relative">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">📧</span>
             <input
-  type="email"
-  placeholder="Email Address"
-  className="w-full border border-gray-300 px-4 py-3 rounded-lg bg-white text-gray-700 placeholder-gray-400 focus:outline-none"
-/>
+              type="email"
+              placeholder="Email Address"
+              className="w-full border border-gray-300 px-4 py-3 pl-10 rounded-lg bg-white text-gray-700 placeholder-gray-400 focus:outline-none"
+              {...register("email", { required: "Email is required" })}
+            />
           </div>
 
           {/* PASSWORD */}
           <div className="relative">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">🔒</span>
             <input
-  type="password"
-  placeholder="Password"
-  className="w-full border border-gray-300 px-4 py-3 rounded-lg bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-/>
+              type="password"
+              placeholder="Password"
+              className="w-full border border-gray-300 px-4 py-3 pl-10 rounded-lg bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              {...register("password", { required: "Password is required" })}
+            />
           </div>
 
           <p className="text-sm text-right text-blue-500 cursor-pointer">
             Forgot Password?
           </p>
 
-          <button className="w-full bg-blue-600 text-white py-3 rounded-md shadow-md">
-            Sign In
+          <button type="submit" disabled={isSubmitting} className="w-full bg-blue-600 text-white py-3 rounded-md shadow-md disabled:opacity-50">
+            {isSubmitting ? "Signing In..." : "Sign In"}
           </button>
 
           <div className="flex items-center my-6">
@@ -178,7 +180,7 @@ const SignIn = () => {
             Don’t have an account? <span className="text-blue-500">Sign Up</span>
           </p>
 
-        </div>
+        </form>
       </div>
 
     </div>

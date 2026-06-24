@@ -1,33 +1,42 @@
 @import "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #ffffff;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+
   @font-face {
     font-family: "Poppine-reg";
     src: url("/fonts/Poppins-Light.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
   }
+
   @font-face {
     font-family: "Anta";
     src: url("/fonts/Anta-Regular.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
   }
+
   .text-stroke-white {
     -webkit-text-stroke: 2px white; /* stroke width + color */
     color: transparent; /* make fill transparent if you want only stroke */
   }
+
   .text-stroke-white-fill {
     -webkit-text-stroke: 1px black; /* stroke around white text */
     color: white;
@@ -40,6 +49,7 @@
     -webkit-text-stroke: 1px #54784D; /* text border */
     color: #FFFFFF; /* text color */
   }
+
 @theme {
   --font-poppin-reg: "Poppine-reg", sans-serif;
   --font-anta: "Anta", sans-serif;
@@ -52,14 +62,21 @@
 --breakpoint-xl: 1280px;
 --breakpoint-2xl: 1536px;
 --breakpoint-page-2xl: 1650px;
+
+
 }
+
 .h1-poppin {
   @apply text-xl;
   font-family: var(--font-poppin-reg);
 }
+
 .h1-anta {
   font-family: var(--font-anta);
 }
+
+
+
 .header-layout{
   @apply grid grid-cols-16 gap-4 justify-center
 }
@@ -67,6 +84,7 @@
   @apply bg-white/25 dark:bg-white/5  rounded-full   p-3 flex items-center justify-center;
   box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
 }
+
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -77,13 +95,16 @@
     transform: translateX(0);
   }
 }
+
 .animate-slideIn {
   animation: slideIn 0.45s ease-out both;
 }
+
 /* Backdrop fade */
 .modal-backdrop {
   animation: modalBackdropFade 0.25s ease-out forwards;
 }
+
 @keyframes modalBackdropFade {
   from {
     opacity: 0;
@@ -92,10 +113,12 @@
     opacity: 1;
   }
 }
+
 /* Modal zoom animation */
 .modal-animate {
   animation: modalZoom 0.25s ease-out forwards;
 }
+
 @keyframes modalZoom {
   from {
     opacity: 0;
@@ -106,45 +129,61 @@
     transform: scale(1);
   }
 }
+
+
 .date-input::-webkit-calendar-picker-indicator {
   filter: invert(0.5); 
   cursor: pointer;
   transform: scale(1.2); 
+
 }
+
 .dark .date-input::-webkit-calendar-picker-indicator {
   filter: invert(1); 
+
 }
+
+
 @keyframes float {
   0% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
   100% { transform: translateY(0); }
 }
+
 .animate-float {
   animation: float 12s ease-in-out infinite;
 }
+
 /* Container scrollable but scrollbar hidden */
 .sidebar-chat-list {
   overflow-y: scroll;       /* enable vertical scrolling */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;    /* Firefox */
 }
+
 .sidebar-chat-list::-webkit-scrollbar {
   display: none;            /* Chrome, Safari, Edge */
 }
+
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .no-scrollbar {
   -ms-overflow-style: none;  /* IE & Edge */
   scrollbar-width: none;     /* Firefox */
 }
+
 :root {
   --budget-chart-color: #1e88e5; /* Light mode color */
 }
+
 /* Aapka project data-theme=dark use karta hai */
 [data-theme="dark"] {
   --budget-chart-color: #00f2ff !important; /* Dark mode neon color */
 }
+
 /* index.css */
 .dark .resource-bar-engineering { background-color: #00d4ff !important; }
 .dark .resource-bar-design { background-color: #bc13fe !important; }
